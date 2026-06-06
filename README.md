@@ -16,6 +16,9 @@ Frequency-Spatial Detail Aggregator. This file contains the main components used
 train_m3fd.py
 An example training script for the M3FD dataset.
 
+eval_m3fd.py
+An example evaluation script for the M3FD dataset.
+
 Training
 
 Before training, prepare the RGB-T dataset configuration file and the model configuration file.
@@ -51,8 +54,40 @@ Example with custom options:
 
 python train_m3fd.py --model configs/HCM-Net.yaml --data datasets/M3FD/data.yaml --project runs/M3FD --name HCM-Net --imgsz 640 --epochs 400 --batch 16
 
+Evaluation
+
+Before evaluation, prepare the trained weight file and the RGB-T dataset configuration file.
+
+Example command:
+
+python eval_m3fd.py --weights runs/M3FD/HCM-Net/weights/best.pt --data datasets/M3FD/data.yaml
+
+Example with custom options:
+
+python eval_m3fd.py --weights runs/M3FD/HCM-Net/weights/best.pt --data datasets/M3FD/data.yaml --project runs/M3FD_eval --name HCM-Net --imgsz 640 --batch 16 --split val
+
+Common evaluation options:
+
+--weights
+Path to the trained weight file.
+
+--data
+Path to the dataset configuration file.
+
+--split
+Dataset split used for evaluation.
+
+--conf
+Confidence threshold.
+
+--iou
+IoU threshold for non-maximum suppression.
+
+--device
+Evaluation device.
+
 Notes
 
 The paths in the commands are examples. Please replace them with the actual paths of your model configuration file and dataset configuration file.
 
-The code is intended to be used with an Ultralytics-based RGB-T detection framework that supports YOLOMM and the corresponding model configuration.
+The code is intended to be used with an Ultralytics-based RGB-T detection framework that supports the corresponding model configuration.
