@@ -1,0 +1,8 @@
+train: train.txt  
+val: val.txt 
+
+# number of classes
+nc: 6
+
+# class names
+names: ['people', 'car', 'Bus', 'Lamp', 'Motorcycle', 'truck']
